@@ -119,10 +119,14 @@ public class DisplayActivity extends AppCompatActivity {
      * Updating note in db and updating
      * item in the list by its position
      */
-    private void updateNote(int amount, int position) {
+    private void updateNote(int amount, String purpose, String date, String description, String method, int position) {
         Tracker n = recordsList.get(position);
         // updating note text
         n.sAmount(amount);
+        n.sPurpose(purpose);
+        n.sDate(date);
+        n.sDescription(description);
+        n.sMethod(method);
 
         // updating note in db
         db.updateRecord(n);
@@ -185,12 +189,20 @@ public class DisplayActivity extends AppCompatActivity {
         AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(DisplayActivity.this);
         alertDialogBuilderUserInput.setView(view);
 
-        final EditText inputNote = view.findViewById(R.id.note);
+        final EditText amt = view.findViewById(R.id.amountv);
+        final EditText purp = view.findViewById(R.id.purposev);
+        final EditText dte = view.findViewById(R.id.datev);
+        final EditText descrpt = view.findViewById(R.id.descriptionv);
+        final EditText mthd = view.findViewById(R.id.methodv);
         TextView dialogTitle = view.findViewById(R.id.dialog_title);
         dialogTitle.setText(!shouldUpdate ? getString(R.string.lbl_new_note_title) : getString(R.string.lbl_edit_note_title));
 
         if (shouldUpdate && record != null) {
-            inputNote.setText(record.gAmount() + " " +record.gPurpose());
+            amt.setText(Integer.toString(record.gAmount()));
+            purp.setText(record.gPurpose());
+            dte.setText(record.gDate());
+            descrpt.setText(record.gDescription());
+            mthd.setText(record.gMethod());
         }
         alertDialogBuilderUserInput
                 .setCancelable(false)
@@ -213,7 +225,7 @@ public class DisplayActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Show toast message when no text is entered
-                if (TextUtils.isEmpty(inputNote.getText().toString())) {
+                if (TextUtils.isEmpty(purp.getText().toString())) {
                     Toast.makeText(DisplayActivity.this, "Enter note!", Toast.LENGTH_SHORT).show();
                     return;
                 } else {
@@ -223,10 +235,10 @@ public class DisplayActivity extends AppCompatActivity {
                 // check if user updating note
                 if (shouldUpdate && record != null) {
                     // update note by it's id
-                    updateNote(Integer.parseInt(inputNote.getText().toString()), position);
+                    updateNote(Integer.parseInt(amt.getText().toString()),purp.getText().toString(),dte.getText().toString(),descrpt.getText().toString(),mthd.getText().toString(), position);
                 } else {
                     // create new note
-                    createNote(Integer.parseInt(inputNote.getText().toString()),null);
+                    createNote(Integer.parseInt(amt.getText().toString()),null);
                 }
             }
         });
