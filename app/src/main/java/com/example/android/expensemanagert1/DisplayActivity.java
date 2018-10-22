@@ -225,10 +225,14 @@ public class DisplayActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Show toast message when no text is entered
-                if (TextUtils.isEmpty(purp.getText().toString())) {
-                    Toast.makeText(DisplayActivity.this, "Enter note!", Toast.LENGTH_SHORT).show();
+                if (TextUtils.isEmpty(amt.getText().toString())) {
+                    Toast.makeText(DisplayActivity.this, "Enter Amount!", Toast.LENGTH_SHORT).show();
                     return;
-                } else {
+                }
+                else if(TextUtils.isEmpty(purp.getText().toString())) {
+                    Toast.makeText(DisplayActivity.this, "Enter Purpose!", Toast.LENGTH_SHORT).show();
+                    return;
+                }else {
                     alertDialog.dismiss();
                 }
 

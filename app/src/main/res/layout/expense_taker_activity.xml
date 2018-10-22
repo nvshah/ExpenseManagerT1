@@ -17,7 +17,7 @@
         android:ems="10"
         android:gravity="center"
         android:hint="Price"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:textColorHint="@color/darkGrey" />
 
     <EditText
@@ -31,7 +31,7 @@
         android:ems="10"
         android:gravity="center"
         android:hint="Purpose"
-        android:inputType="textPersonName"
+        android:inputType="text"
         android:textColorHint="@color/darkGrey" />
 
     <EditText

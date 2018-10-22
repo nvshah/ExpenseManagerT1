@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -70,17 +71,27 @@ public class Main3Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                int amountval = Integer.parseInt(expense.getText().toString());
-                String purposeval = reason.getText().toString();
-                String dateval = Dt.getText().toString();
-                String  desval = detail.getText().toString();
-                String methodval = method.getSelectedItem().toString();
+                if(TextUtils.isEmpty(expense.getText().toString())){
+                    Toast.makeText(Main3Activity.this, "Enter Amount!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else if(TextUtils.isEmpty(reason.getText().toString())){
+                    Toast.makeText(Main3Activity.this, "Enter Purpose!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else{
 
-                db.insertTracker(amountval,purposeval,dateval,desval,methodval);
-                Toast.makeText(getApplicationContext(),"Save Successfully",Toast.LENGTH_SHORT).show();
+                    int amountval = Integer.parseInt(expense.getText().toString());
+                    String purposeval = reason.getText().toString();
+                    String dateval = Dt.getText().toString();
+                    String desval = detail.getText().toString();
+                    String methodval = method.getSelectedItem().toString();
 
+                    db.insertTracker(amountval, purposeval, dateval, desval, methodval);
+                    Toast.makeText(getApplicationContext(), "Save Successfully", Toast.LENGTH_SHORT).show();
 
-                startActivity(j);
+                    startActivity(j);
+                }
 
             }
         });

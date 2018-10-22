@@ -20,21 +20,24 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Amount : " />
+            android:text="Amount : "
+            android:textSize="@dimen/input_new_note"/>
 
         <EditText
             android:id="@+id/amountv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
+            android:textColor="@color/darkBlue"
             android:gravity="top"
             android:hint="@string/hint_enter_note"
-            android:inputType="textCapSentences|textMultiLine"
+            android:inputType="number"
             android:lines="4"
             android:textColorHint="@color/hint_enter_note"
             android:textSize="@dimen/input_new_note" />
@@ -43,7 +46,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -55,10 +59,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
+            android:textColor="@color/darkBlue"
             android:gravity="top"
             android:hint="@string/hint_enter_note"
-            android:inputType="textCapSentences|textMultiLine"
-            android:lines="4"
+            android:inputType="text|textMultiLine"
+            android:lines="2"
             android:textColorHint="@color/hint_enter_note"
             android:textSize="@dimen/input_new_note" />
 
@@ -66,7 +71,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -78,9 +84,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
+            android:textColor="@color/darkBlue"
             android:gravity="top"
             android:hint="@string/hint_enter_note"
-            android:inputType="textCapSentences|textMultiLine"
+            android:inputType="date"
             android:lines="4"
             android:textColorHint="@color/hint_enter_note"
             android:textSize="@dimen/input_new_note" />
@@ -88,7 +95,8 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -100,17 +108,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
+            android:textColor="@color/darkBlue"
             android:gravity="top"
             android:hint="@string/hint_enter_note"
             android:inputType="textCapSentences|textMultiLine"
-            android:lines="4"
+            android:lines="3"
             android:textColorHint="@color/hint_enter_note"
             android:textSize="@dimen/input_new_note" />
 
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -122,10 +132,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
+            android:textColor="@color/darkBlue"
             android:gravity="top"
             android:hint="@string/hint_enter_note"
-            android:inputType="textCapSentences|textMultiLine"
-            android:lines="4"
+            android:inputType="text"
             android:textColorHint="@color/hint_enter_note"
             android:textSize="@dimen/input_new_note" />
 
