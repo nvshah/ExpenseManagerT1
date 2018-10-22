@@ -141,6 +141,30 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="IncOrExp : "/>
+
+        <EditText
+            android:id="@+id/IorEv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:textColor="@color/darkBlue"
+            android:gravity="top"
+            android:hint="@string/hint_enter_note"
+            android:inputType="text"
+            android:textColorHint="@color/hint_enter_note"
+            android:textSize="@dimen/input_new_note" />
+
+    </LinearLayout>
+
 
 
 

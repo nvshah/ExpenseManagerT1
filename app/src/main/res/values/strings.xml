@@ -15,5 +15,10 @@
         <item>Debit Card</item>
         <item>Net Banking</item>
     </string-array>
+
+    <string-array name="iorearray">
+        <item>Expense</item>
+        <item>Income</item>
+    </string-array>
     <string name="title_activity_display">DisplayActivity</string>
 </resources>

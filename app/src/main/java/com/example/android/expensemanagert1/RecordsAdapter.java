@@ -1,6 +1,7 @@
 package com.example.android.expensemanagert1;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -51,6 +52,16 @@ public class RecordsAdapter extends RecyclerView.Adapter<RecordsAdapter.MyViewHo
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Tracker record = recordsList.get(position);
 
+        //new add
+
+        if(record.gIorE().equals("Income"))
+        {
+            holder.amountdisplay.setTextColor(Color.parseColor("#008000"));
+        }
+        else
+        {
+            holder.amountdisplay.setTextColor(Color.parseColor("#FF0000"));
+        }
         holder.amountdisplay.setText(Integer.toString(record.gAmount()));
 
         holder.categorydisplay.setText(record.gPurpose());

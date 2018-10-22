@@ -14,14 +14,13 @@ import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Locale;
 
 import Database.DatabaseHelper;
 
 public class Main3Activity extends AppCompatActivity {
 
     EditText expense,reason,Dt,detail;
-    Spinner method;
+    Spinner method,IorE;
 
     Button save;
     final Calendar myCalendar = Calendar.getInstance();
@@ -40,6 +39,7 @@ public class Main3Activity extends AppCompatActivity {
         reason = (EditText)findViewById(R.id.purpose);
         detail = findViewById(R.id.des);
         method = (Spinner)findViewById(R.id.amt);
+        IorE = (Spinner)findViewById(R.id.inorex);
 
         db = new DatabaseHelper(this);
 
@@ -87,7 +87,9 @@ public class Main3Activity extends AppCompatActivity {
                     String desval = detail.getText().toString();
                     String methodval = method.getSelectedItem().toString();
 
-                    db.insertTracker(amountval, purposeval, dateval, desval, methodval);
+                    String ioreval = IorE.getSelectedItem().toString();
+
+                    db.insertTracker(amountval, purposeval, dateval, desval, methodval, ioreval);
                     Toast.makeText(getApplicationContext(), "Save Successfully", Toast.LENGTH_SHORT).show();
 
                     startActivity(j);
@@ -97,8 +99,8 @@ public class Main3Activity extends AppCompatActivity {
         });
     }
     private void updateLabel() {
-        String myFormat = "MM/dd/yy";
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        String myFormat = "yyyy-MM-dd";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat);
 
         Dt.setText(sdf.format(myCalendar.getTime()));
     }

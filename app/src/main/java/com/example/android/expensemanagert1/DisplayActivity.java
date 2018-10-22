@@ -99,7 +99,7 @@ public class DisplayActivity extends AppCompatActivity {
     private void createNote(int amount, String purpose) {
         // inserting note in db and getting
         // newly inserted note id
-        long id = db.insertTracker(amount,null,null,null,null);
+        long id = db.insertTracker(amount,null,null,null,null,null);
 
         // get the newly inserted note from db
         Tracker n = db.getTracker(id);
@@ -119,7 +119,7 @@ public class DisplayActivity extends AppCompatActivity {
      * Updating note in db and updating
      * item in the list by its position
      */
-    private void updateNote(int amount, String purpose, String date, String description, String method, int position) {
+    private void updateNote(int amount, String purpose, String date, String description, String method, String IorE, int position) {
         Tracker n = recordsList.get(position);
         // updating note text
         n.sAmount(amount);
@@ -127,6 +127,8 @@ public class DisplayActivity extends AppCompatActivity {
         n.sDate(date);
         n.sDescription(description);
         n.sMethod(method);
+
+        n.sIorE(IorE);      //add new
 
         // updating note in db
         db.updateRecord(n);
@@ -194,6 +196,9 @@ public class DisplayActivity extends AppCompatActivity {
         final EditText dte = view.findViewById(R.id.datev);
         final EditText descrpt = view.findViewById(R.id.descriptionv);
         final EditText mthd = view.findViewById(R.id.methodv);
+
+        final EditText ie = view.findViewById(R.id.IorEv);        //new add
+
         TextView dialogTitle = view.findViewById(R.id.dialog_title);
         dialogTitle.setText(!shouldUpdate ? getString(R.string.lbl_new_note_title) : getString(R.string.lbl_edit_note_title));
 
@@ -203,6 +208,7 @@ public class DisplayActivity extends AppCompatActivity {
             dte.setText(record.gDate());
             descrpt.setText(record.gDescription());
             mthd.setText(record.gMethod());
+            ie.setText(record.gIorE());
         }
         alertDialogBuilderUserInput
                 .setCancelable(false)
@@ -239,7 +245,7 @@ public class DisplayActivity extends AppCompatActivity {
                 // check if user updating note
                 if (shouldUpdate && record != null) {
                     // update note by it's id
-                    updateNote(Integer.parseInt(amt.getText().toString()),purp.getText().toString(),dte.getText().toString(),descrpt.getText().toString(),mthd.getText().toString(), position);
+                    updateNote(Integer.parseInt(amt.getText().toString()),purp.getText().toString(),dte.getText().toString(),descrpt.getText().toString(),mthd.getText().toString(), ie.getText().toString(), position);
                 } else {
                     // create new note
                     createNote(Integer.parseInt(amt.getText().toString()),null);

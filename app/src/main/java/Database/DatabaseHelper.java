@@ -53,7 +53,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public long insertTracker(int amount, String purpose, String date, String description, String method) {
+    public long insertTracker(int amount, String purpose, String date, String description, String method , String IorE) {
         // get writable database as we want to write data
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -65,6 +65,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(Tracker.COLUMN_DATE, date);
         values.put(Tracker.COLUMN_DESCRIPTION, description);
         values.put(Tracker.COLUMN_METHOD, method);
+
+        values.put(Tracker.COLUMN_IORE, IorE);  //new add
 
         // insert row
         long id = db.insert(Tracker.TABLE_NAME, null, values);
@@ -87,6 +89,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 Tracker.COLUMN_DATE,
                 Tracker.COLUMN_DESCRIPTION,
                 Tracker.COLUMN_METHOD,
+                Tracker.COLUMN_IORE,                //new add
                 Tracker.COLUMN_TIMESTAMP
         };
 
@@ -114,6 +117,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 cursor.getString(cursor.getColumnIndex(Tracker.COLUMN_DATE)),
                 cursor.getString(cursor.getColumnIndex(Tracker.COLUMN_DESCRIPTION)),
                 cursor.getString(cursor.getColumnIndex(Tracker.COLUMN_METHOD)),
+                cursor.getString(cursor.getColumnIndex(Tracker.COLUMN_IORE)),           //new add
                 cursor.getString(cursor.getColumnIndex(Tracker.COLUMN_TIMESTAMP)));
 
         // close the db connection
@@ -141,6 +145,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 record.sDate(cursor.getString(cursor.getColumnIndex(Tracker.COLUMN_DATE)));
                 record.sDescription(cursor.getString(cursor.getColumnIndex(Tracker.COLUMN_DESCRIPTION)));
                 record.sMethod(cursor.getString(cursor.getColumnIndex(Tracker.COLUMN_METHOD)));
+                record.sIorE(cursor.getString(cursor.getColumnIndex(Tracker.COLUMN_IORE)));         //new add
                 record.sTimestamp(cursor.getString(cursor.getColumnIndex(Tracker.COLUMN_TIMESTAMP)));
 
                 records.add(record);
@@ -176,6 +181,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(Tracker.COLUMN_DATE, record.gDate());
         values.put(Tracker.COLUMN_DESCRIPTION, record.gDescription());
         values.put(Tracker.COLUMN_METHOD, record.gMethod());
+
+        values.put(Tracker.COLUMN_IORE, record.gIorE());
 
         String selection = Tracker.COLUMN_ID + " = ?";
         String[] selectionArgs = {String.valueOf(record.gId())};
