@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import Database.model.Tracker;
@@ -50,6 +51,38 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // Create tables again
         onCreate(db);
+
+    }
+
+    public int[] report1(){
+        // get readable database as we are not inserting anything
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        int[] te = {0,0,0};
+        int pmonth= Calendar.getInstance().get(Calendar.MONTH)+1;
+        int pyear= Calendar.getInstance().get(Calendar.YEAR);
+        int ptoday= Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+        Cursor c1 = db.rawQuery("select sum(amount) from ExpenseRecord where substr(date,6,2)='"+pmonth+"' and IorE='Expense'",null);
+        Cursor c2 = db.rawQuery("select sum(amount) from ExpenseRecord where substr(date,1,4)='"+pyear+"' and IorE='Expense'",null);
+        Cursor c3 = db.rawQuery("select sum(amount) from ExpenseRecord where substr(date,9,2)='"+ptoday+"' and IorE='Expense'",null);
+
+        if (c1 != null) {
+            c1.moveToFirst();
+            te[0]=c1.getInt(0);
+        }
+        if (c2 != null) {
+            c2.moveToFirst();
+            te[1]=c2.getInt(0);
+        }
+        if (c3 != null) {
+            c3.moveToFirst();
+            te[2]=c3.getInt(0);
+        }
+
+        db.close();
+
+        return te;
+
 
     }
 
