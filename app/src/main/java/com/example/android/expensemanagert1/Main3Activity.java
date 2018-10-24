@@ -65,7 +65,7 @@ public class Main3Activity extends AppCompatActivity {
             }
         });
 
-        final Intent j = new Intent(this, MainActivity.class);
+        final Intent j = new Intent(this, DisplayActivity.class);
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -55,6 +55,7 @@ public class DisplayActivity extends AppCompatActivity {
         recordsList.addAll(db.getAllRecords());
 
         final Intent i = new Intent(this, Main3Activity.class);
+        final Intent j = new Intent(this, MainActivity.class);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -62,6 +63,16 @@ public class DisplayActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 startActivity(i);
+            }
+        });
+
+        // new added
+        FloatingActionButton hom = (FloatingActionButton) findViewById(R.id.home);
+        hom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();  //new added
+                startActivity(j);
             }
         });
 

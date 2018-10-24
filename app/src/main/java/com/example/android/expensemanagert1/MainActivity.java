@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import Database.DatabaseHelper;
@@ -14,6 +15,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button seeexpense,addexpense;
 
     TextView report;
+
+    ImageButton reload;
 
     DatabaseHelper db;
 
@@ -27,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         report = findViewById(R.id.report1);
 
+        reload = findViewById(R.id.refresh);
+
         db= new DatabaseHelper(this);
 
         int[] r1 = new int[3];
@@ -37,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         report.setText("Total Spent This month : "+Integer.toString(r1[0])+"\n\nTotal Spent this Year : "+Integer.toString(r1[1])+"\n\nTotal Expense Today : "+Integer.toString(r1[2]));
         seeexpense.setOnClickListener(this);
         addexpense.setOnClickListener(this);
+        reload.setOnClickListener(this);
 
 
     }
@@ -52,6 +58,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.view:
                 Intent j = new Intent(this, DisplayActivity.class);
                 startActivity(j);
+                break;
+            case R.id.refresh:
+                //Intent k = new Intent(this, MainActivity.class);
+                finish();
+                startActivity(getIntent());
                 break;
         }
 
